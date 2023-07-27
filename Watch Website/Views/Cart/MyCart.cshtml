@@ -1,0 +1,151 @@
+﻿@model IEnumerable<Watch_Website.Models.Cart>
+
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="heading">My Cart</h2>
+
+
+
+@foreach (var item in Model)
+{
+
+    <div class="section">
+        <a href=@Url.Action("ViewDetails", "Home", new { id = item.Id })>
+            <div class="cards">
+                <img src=@Url.Content(item.Image) />
+
+                <div class="content">
+                    <h5 class="name">@Html.DisplayFor(modelitem => item.Name)</h5>
+
+                    <h6 class="model">@Html.DisplayFor(modelitem => item.Model)</h6>
+
+                    <h6 class="brand">@Html.DisplayFor(modelitem => item.Brand)</h6>
+
+                    @{
+                        decimal p = item.Price;
+                        string fo = p.ToString("N");
+                    }
+
+
+                    <h5 class="price"><span>₹</span> @fo</h5>
+
+                    <h6 class="price"><span>Qty:</span> &nbsp; @Html.DisplayFor(modelitem => item.Quantity) </h6>
+
+
+                </div>
+            </div>
+        </a>
+        <a class="del" href=@Url.Action("RemoveFromCart", new { id = item.Id })>
+            <i class="fa-solid fa-trash"></i>
+        </a>
+    </div>
+
+}
+@{
+    decimal pri = ViewBag.TotalPrice;
+    string totalformat = pri.ToString("N");
+}
+
+<div class="d">
+    <h3 class="price">Total Price: @totalformat</h3>
+    <div class="buy"><a href=@Url.Action("" )> Buy Now &nbsp; <i class="fa-brands fa-shopify"></i> </a></div>
+</div>
+
+<style>
+    .d{
+        text-align:center;
+        margin:50px 0;
+    }
+
+    .buy a {
+        text-decoration: none;
+        color: white;
+        border: 1px solid black;
+        background-color: black;
+        padding: 10px 66px;
+        text-transform: uppercase;
+        font-family: 'Rubik', sans-serif;
+        font-weight: 500;
+    }
+
+        .buy a:hover {
+            background-color: white;
+            color: black;
+            font-weight: 700;
+        }
+
+    .del {
+        position: relative;
+        top: 25px;
+        right: 35px;
+        color: black;
+        height: 22px
+    }
+
+        .del:hover {
+            color: firebrick;
+        }
+
+    .section {
+        display: flex;
+        justify-content: center;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    
+
+    .heading {
+        font-family: 'Raleway', sans-serif;
+        text-align: center;
+        margin: 30px 0;
+        text-transform: uppercase;
+    }
+
+    .cards {
+        padding: 50px 50px 50px 0;
+        width: 100%;
+        background-color: white;
+        display: flex;
+        margin: 10px 0;
+        color: black;
+        width: 550px;
+        border-radius: 10px;
+        border:1px solid #acacac;
+    }
+
+        .cards img {
+            width: 250px;
+            height: auto;
+        }
+
+    .content {
+        padding-left: 50px;
+    }
+
+    .name {
+        font-family: 'Prata', serif;
+    }
+
+    .model {
+        font-family: 'Prompt', sans-serif;
+    }
+
+    .brand {
+        font-family: 'Play', sans-serif;
+        text-transform: uppercase;
+    }
+
+    .price {
+        font-family: 'Kanit', sans-serif;
+    }
+
+    .name, .model, .brand, .price {
+        margin: 20px 0;
+    }
+</style>

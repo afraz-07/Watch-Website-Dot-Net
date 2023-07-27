@@ -1,0 +1,119 @@
+﻿<head>
+
+</head>
+
+<div id="carouselExampleFade" class="carousel slide carousel-fade @ViewBag.None" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/Web Images/Banner1.png" class="d-block w-90" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Web Images/Banner2.png" class="d-block w-90" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Web Images/Banner3.png" class="d-block w-90" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev visually-hidden" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next visually-hidden" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+
+@model IEnumerable<Watch_Website.Models.Product>
+
+
+<h1 class="heading @ViewBag.None">All Watches</h1>
+
+<h6 class="desc">Time is the ultimate luxury, and our watches embody every second of elegance and precision</h6>
+
+
+
+
+@foreach (var item in Model)
+{
+    <div class="section d-inline-block">
+        <a href=@Url.Action("ViewDetails" ,  new { id = item.Id , p = item.Price })>
+            <div class="card">
+                <img src="@Url.Content(item.Image)" width="200px" height="auto" />
+
+                <div class="brand">@Html.DisplayFor(modelItem => item.Name)</div>
+                <div class="name">@Html.DisplayFor(modelItem => item.Brand)</div>
+                <div class="model">@Html.DisplayFor(modelItem => item.Model)</div>
+            </div>
+        </a>
+    </div>
+}
+
+
+<style>
+
+    .desc {
+        text-align: center;
+        font-family: 'Ubuntu', sans-serif;
+        text-transform: capitalize;
+        font-weight: 500;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        transition: none;
+        cursor: pointer;
+    }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            background: transparent;
+            color: transparent;
+        }
+
+    .card {
+        font-family: 'Prompt', sans-serif;
+        width: 300px;
+        padding: 10px;
+        margin: 18%;
+        color: black;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .card img {
+        width: 280px;
+    }
+
+    .brand {
+        text-align: center;
+        font-stretch: extra-condensed;
+        font-size: 1rem;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+
+
+    .name, .model {
+        font-family: 'Play', sans-serif;
+        text-align: center;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+    }
+
+    .model {
+        color: dimgrey;
+    }
+
+
+    .heading {
+        font-family: 'Raleway', sans-serif;
+        text-align: center;
+        margin: 30px 0;
+        text-transform: uppercase;
+    }
+</style>

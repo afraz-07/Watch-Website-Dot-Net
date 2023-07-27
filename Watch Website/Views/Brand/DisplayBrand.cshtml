@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Watch_Website.Models.Product>
+
+@{
+    ViewBag.Title = "DisplayBrand";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1 class="names">@ViewBag.Brands</h1>
+
+
+
+@foreach (var item in Model)
+{
+    <div class="section d-inline-block">
+        <a href=@Url.Action("ViewDetails" ,"Home",  new { id = item.Id , p = item.Price })>
+            <div class="card">
+                <img src="@Url.Content(item.Image)"   />
+
+                <div class="brand">@Html.DisplayFor(modelItem => item.Name)</div>
+                <div class="name">@Html.DisplayFor(modelItem => item.Brand)</div>
+                <div class="model">@Html.DisplayFor(modelItem => item.Model)</div>
+            </div>
+        </a>
+    </div>
+}
+
+
+<style>
+    .card img {
+        width: 200px;
+        height :auto;
+    }
+
+    .names {
+        font-family: 'Prata', serif;
+        text-align:center;
+        margin-top:20px;
+        text-transform:uppercase;
+    }
+
+    .desc {
+        text-align: center;
+        font-family: 'Ubuntu', sans-serif;
+        text-transform: capitalize;
+        font-weight: 500;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        transition: none;
+        cursor: pointer;
+    }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            background: transparent;
+            color: transparent;
+        }
+
+    .card {
+        font-family: 'Prompt', sans-serif;
+        width: 300px;
+        padding: 10px;
+        margin: 18%;
+        color: black;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .card img {
+        width: 280px;
+    }
+
+    .brand {
+        text-align: center;
+        font-stretch: extra-condensed;
+        font-size: 1rem;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+
+
+    .name, .model {
+        font-family: 'Play', sans-serif;
+        text-align: center;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+    }
+
+    .model {
+        color: dimgrey;
+    }
+
+
+    .heading {
+        font-family: 'Raleway', sans-serif;
+        text-align: center;
+        margin: 30px 0;
+        text-transform: uppercase;
+    }
+</style>
+
+
