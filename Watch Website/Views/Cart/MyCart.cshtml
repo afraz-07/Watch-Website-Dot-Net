@@ -44,12 +44,13 @@
     </div>
 
 
-    <div class="d">
-        <h3 class="price">Total Price: @ViewBag.TotalPrice</h3>
-        <div class="buy"><a href=@Url.Action("BuyNow" , "Cart" , new {n= item.Name , b =item.Brand , m = item.Model , p = item.Price , i = item.Image}  )> Buy Now &nbsp;  <i class="fa-solid fa-bag-shopping"></i> </a></div>
-    </div>
 
 }
+
+<div class="d">
+    <h3 class="price">Total Price: @ViewBag.TotalPrice</h3>
+    <div class="buy"><a href=@Url.Action("BuyNow" , "Cart" , new {})> Buy Now &nbsp;  <i class="fa-solid fa-bag-shopping"></i> </a></div>
+</div>
 
 
 <style>
