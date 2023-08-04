@@ -22,6 +22,7 @@ namespace Watch_Website.Models
         public string Brand { get; set; }
         public decimal Price { get; set; }
 
+
         [DisplayName("Upload Image")]
         public string Image { get; set; }
 

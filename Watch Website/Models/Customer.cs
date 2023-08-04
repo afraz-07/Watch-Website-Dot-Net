@@ -21,5 +21,7 @@ namespace Watch_Website.Models
         public string Password { get; set; }
         public string Address { get; set; }
         public Nullable<int> Pincode { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
     }
 }

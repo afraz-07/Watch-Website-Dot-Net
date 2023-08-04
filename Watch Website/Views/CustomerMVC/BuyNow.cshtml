@@ -1,0 +1,298 @@
+﻿@model Watch_Website.Models.Customer
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2 class="heading mt-4 mb-4">Check Out</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="checkout">
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="contact">
+
+
+            <h4 class="subheading">Shipping Address</h4>
+
+            <div class="form-group d-flex m-4 mt-5">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-3  mt-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group d-flex m-4">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-3  mt-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group d-flex m-4">
+                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-3 mt-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            
+                <div class="form-group d-flex m-4">
+                    @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-3  mt-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group d-flex m-4">
+                    @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-3  mt-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.State, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            
+
+            <div class="form-group d-flex m-4">
+                @Html.LabelFor(model => model.Pincode, htmlAttributes: new { @class = "control-label col-md-3  mt-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Pincode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Pincode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group d-flex m-4">
+                @Html.LabelFor(model => model.MobileNo, htmlAttributes: new { @class = "control-label col-md-3  mt-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group d-none">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            
+        </div>
+
+
+    </div>
+
+    <div class="wd">
+        <h4 class="subheading">Order Summary</h4>
+
+        <div class="content">
+            <img src="@Url.Content(ViewBag.ProImg)" />
+
+            <div class="content-desc">
+                <div class="name">@ViewBag.ProName</div>
+                <div class="brand">@ViewBag.ProModel</div>
+                <div class="brand">@ViewBag.ProBrand</div>
+
+
+                @{
+                    decimal p = ViewBag.ProPrice;
+                    string fo = p.ToString("N");
+                }
+                <div class="price"><span>₹</span>@fo</div>
+            </div>
+        </div>
+
+        <div class="ordersec">
+            <div class="order">
+                <h6>SubTotal</h6>
+                <div class="price"><span>₹</span>@fo</div>
+            </div>
+            <div class="order">
+                <h6>Shipping</h6>
+                <div class="price"><span>₹</span>40.00</div>
+            </div>
+            @{
+                decimal sc = 40;
+                decimal tp = ViewBag.ProPrice + sc;
+                string tpp = tp.ToString("N");
+            }
+            <div class="order">
+                <h6>Total Price</h6>
+                <div class="price"><span>₹</span>@tpp</div>
+            </div>
+        </div>
+
+        <div class="pay">
+            <h4 class="subheading">Payment</h4>
+
+            <input type="checkbox" checked class="dark" required /> &nbsp; Cash On Delivery
+
+            <div class="warranty">
+                <img src="https://watchbox-sfcc.imgix.net/icons/wb_sprite.svg#watch-dark" width="24" height="24">Authenticated Collector Quality&nbsp;&nbsp;&nbsp;
+
+                <img src="https://watchbox-sfcc.imgix.net/icons/shipping-dark.svg" width="30" height="24"> Safe & Secure Shipping<br />
+
+                <img src="https://watchbox-sfcc.imgix.net/icons/wb_sprite.svg#warranty-dark" width="24" height="24"> 2-Year Watch Collection Warranty<br />
+            </div>
+
+            <div class="form-group ">
+                <div class="col-md-offset-2 col-md-10 ms-5 mt-2 mb-2 subbtn ">
+                    <input type="submit" value="Place Order" class="btn btn-default sub" />
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+ }
+
+
+
+
+
+
+
+<style>
+    .warranty{
+        color:gray;
+        font-size:0.8rem;
+        text-align:center;
+        margin:20px 0;
+    }
+    .pay{
+        padding:20px 10px 0 10px;
+    }
+    .dark{
+        accent-color:black;
+    }
+
+   
+    .order{
+        display:flex;
+        justify-content:space-between;
+    }
+
+    .order h6 , .order .price{
+        margin:10px ;
+    }
+
+    
+
+    .ordersec {
+        border-bottom: 1px solid #00000038;
+    }
+    body {
+        background-color: #f6f6f6;
+    }
+
+    .wd {
+        padding: 15px 10px;
+        background-color:white;
+        border: 1px solid #00000038;
+    }
+
+    .content {
+        display: flex;
+        justify-content: space-between;
+        width: 500px;
+        padding: 15px 70px 15px 30px;
+        border-bottom: 1px solid #00000038;
+    }
+
+    .content img{
+        width:150px;
+    }
+
+    .checkout{
+        display:flex;
+        justify-content:center;
+        gap:10%;
+        margin:0 100px;
+    }
+
+    .subbtn{
+        text-align: center;
+    }
+
+    .subbtn input{
+        width:500px;
+    }
+
+    
+
+    .name , .price {
+        font-size:1.1rem;
+
+    }
+
+    .content-desc , .ordersec , .pay{
+        font-family: 'Prompt', sans-serif;
+    }
+
+    .brand {
+        font-size: 0.8rem;
+    }
+
+   
+
+    .name, .model, .brand, .price {
+        margin: 10px 0;
+    }
+
+    .subheading {
+        font-family: 'Raleway', sans-serif;
+        text-transform: capitalize;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-align:center;
+    }
+
+    .form-horizontal {
+/*        border: 1px solid #00000054;
+*/        padding: 10px 100px 15px 50px;
+    }
+
+    .m-4 input {
+        width: 800px;
+        border: 1px solid #00000054;
+        height: 40px;
+        background-color: transparent;
+    }
+
+
+    .sub {
+        text-align: center;
+        background-color: black;
+        color: white;
+        border: 1px solid black;
+        border-radius: 0px;
+        text-transform: uppercase;
+        font-family: 'Rubik', sans-serif;
+    }
+
+        .sub:hover {
+            color: black;
+            background-color: white;
+            border: 1px solid black;
+            font-weight: 600;
+        }
+</style>

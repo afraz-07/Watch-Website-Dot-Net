@@ -39,7 +39,7 @@
 @foreach (var item in Model)
 {
     <div class="section d-inline-block">
-        <a href=@Url.Action("ViewDetails" ,  new { id = item.Id , p = item.Price })>
+        <a href=@Url.Action("ViewDetails" ,  new { id = item.Id , p = item.Price  })>
             <div class="card">
                 <img src="@Url.Content(item.Image)" width="200px" height="auto" />
 

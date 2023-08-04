@@ -4,20 +4,24 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Watch_Website.Models;
 
 namespace Watch_Website.Controllers
 {
     public class CustomerMVCController : Controller
     {
+        
+
+        WatchEntities DB = new WatchEntities();
         HttpClient client = new HttpClient();
-        public ActionResult CustomerRegister()
+        public ActionResult UserRegister()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult CustomerRegister(Customer c)
+        public ActionResult UserRegister(Customer c)
         {
             client.BaseAddress = new Uri("http://localhost:50697/api/Customerwebapi");
             var response = client.PostAsJsonAsync("Customerwebapi", c);
@@ -32,40 +36,70 @@ namespace Watch_Website.Controllers
             return View("Create");
         }
 
-        public ActionResult EditCustomerProfile(int id)
+        [Authorize]
+        public ActionResult BuyNow (string Mobile , string pname , string pmodel , string pbrand , decimal pprice ,string pimg)
         {
-            Customer c = null;
-            client.BaseAddress = new Uri("http://localhost:50697/api/Customerwebapi");
-            var response = client.GetAsync("WebApi?id=" + id.ToString());
-            response.Wait();
 
-            var test = response.Result;
-            if (test.IsSuccessStatusCode)
-            {
-                var display = test.Content.ReadAsAsync<Customer>();
-                display.Wait();
-                c = display.Result;
-            }
+            var f = DB.Customers.Where(x=>x.MobileNo == Mobile).FirstOrDefault();
 
-            return View(c);
 
+            ViewBag.ProName = pname;
+            ViewBag.ProModel = pmodel;
+            ViewBag.ProBrand = pbrand;
+            ViewBag.ProPrice = pprice;
+            ViewBag.ProImg = pimg;
+
+           
+
+            return View(f);
         }
 
         [HttpPost]
-        public ActionResult EditCustomerProfile(Customer c)
+        public ActionResult BuyNow(Customer c)
         {
-            client.BaseAddress = new Uri("http://localhost:50697/api/Customerwebapi");
-            var response = client.PutAsJsonAsync("WebApi", c);
-            response.Wait();
+            DB.Entry(c).State = System.Data.Entity.EntityState.Modified;
+            DB.SaveChanges();
+            return RedirectToAction("PlaceOrder" , "CustomerMVC");
+        }
 
-            var test = response.Result;
-            if (test.IsSuccessStatusCode)
+        public ActionResult PlaceOrder()
+        {
+            return View();
+        }
+       
+        public ActionResult UserLogin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UserLogin(Customer c)
+        {
+            try
             {
-                return RedirectToAction("GetAll");
+                var user = DB.Customers.Where(x => x.MobileNo == c.MobileNo && x.Password == c.Password).FirstOrDefault();
+
+                if (user != null)
+                {
+                    FormsAuthentication.SetAuthCookie(c.MobileNo, false);
+                    return RedirectToAction("Index", "Home");
+                }
+
+               
+
+                return View();
             }
+            catch 
+            {
+                return RedirectToAction("Error");
+            }
+        }
 
-            return View("Edit");
-
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index" , "Home");
         }
     }
 }

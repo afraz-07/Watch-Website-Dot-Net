@@ -9,6 +9,7 @@ using Watch_Website.Models;
 
 namespace Watch_Website.Controllers
 {
+    [Authorize (Roles = "Admin")]
     public class ProductController : Controller
     {
         WatchEntities DB = new WatchEntities();

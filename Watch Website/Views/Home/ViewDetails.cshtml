@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "ViewDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 
@@ -20,14 +21,37 @@
 
         <h3 class="price"><span>₹</span> @ViewBag.Price</h3>
 
-        <div class="carts"><a href=@Url.Action("AddToCart" , "Cart" ,  new {id = Model.Id , name = Model.Name , model = Model.Model , brand = Model.Brand , price = Model.Price , img = Model.Image } )> Add to Cart &nbsp; <i class="fa-solid fa-cart-shopping"></i> </a></div>
+        <div class="carts"><a href=@Url.Action("AddToCart" , "Cart" ,  new {id = Model.Id , name = Model.Name , model = Model.Model , brand = Model.Brand , price = Model.Price , img = Model.Image  } )> Add to Cart &nbsp; <i class="fa-solid fa-cart-shopping"></i> </a></div>
 
-        <div class="buy"><a href=@Url.Action()> Buy Now &nbsp; <i class="fa-brands fa-shopify"></i> </a></div>
+        <div class="buy"><a href=@Url.Action("BuyNow" , "CustomerMVC" , new {Mobile = @User.Identity.Name , pname = Model.Name , pmodel = Model.Model , pbrand = Model.Brand , pprice = Model.Price , pimg = Model.Image })> Buy Now &nbsp; <i class="fa-solid fa-bag-shopping"></i></a></div>
+                
     </div>
 
 </div>
 
 <style>
+    .view{
+        margin:50px 0;
+    }
+
+    .qty input{
+        width:110px;
+        text-align:center;
+    }
+
+    .qty {
+        margin-bottom: 30px;
+        font-family: font-family: 'Rubik', sans-serif;
+        font-weight:600;
+    }
+   
+    .view img {
+        cursor: zoom-in;
+        transition: opacity .5s;
+        display: block;
+        
+    }
+
     .carts a {
         color: white;
         text-decoration: none;
@@ -73,7 +97,7 @@
     }
 
     .content{
-        margin:10px 0 0 10%;
+        margin:25px 0 0 10%;
     }
 
     .name {

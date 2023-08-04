@@ -7,16 +7,21 @@ using Watch_Website.Models;
 
 namespace Watch_Website.Controllers
 {
+   
+
+    [Authorize]
+
+    
     public class CartController : Controller
     {
         private List<Cart> GetCart()
         {
-            // Retrieve the cart from session or create a new one if it doesn't exist
             var cart = Session["Cart"] as List<Cart>;
             if (cart == null)
             {
                 cart = new List<Cart>();
                 Session["Cart"] = cart;
+                
             }
             return cart;
         }
@@ -33,19 +38,28 @@ namespace Watch_Website.Controllers
 
         public ActionResult MyCart()
         {
+            
             var cart = GetCart();
 
             decimal totalPrice = CalculateTotalPrice(cart);
-            ViewBag.TotalPrice = totalPrice;
+            
+
+            string format = totalPrice.ToString("N");
+
+            ViewBag.TotalPrice = format;
+
+
+
 
             return View(cart);
         }
 
-        public ActionResult AddToCart(int id, string name, string model , string brand , decimal price , string img)
+       
+
+        public ActionResult AddToCart(int id, string name, string model , string brand , decimal price , string img )
         {
             var cart = GetCart();
 
-            // Check if the product already exists in the cart
             var existingItem = cart.FirstOrDefault(item => item.Id == id);
 
 
@@ -77,7 +91,6 @@ namespace Watch_Website.Controllers
         {
             var cart = GetCart();
 
-            // Find the item with the specified productId in the cart
             var itemToRemove = cart.FirstOrDefault(item => item.Id == id);
             if (itemToRemove != null)
             {
@@ -87,12 +100,7 @@ namespace Watch_Website.Controllers
             return RedirectToAction("MyCart");
         }
 
-        //public ActionResult BuyNow(int id , Product p)
-        //{
-
-
-        //    return View();
-        //}
+        
     }
 
 }

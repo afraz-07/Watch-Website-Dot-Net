@@ -13,7 +13,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400&family=Montserrat:wght@300;400&family=Play&family=Prata&family=Prompt&family=Raleway&family=Rubik:wght@300&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Montserrat:wght@300;400&family=Play&family=Prata&family=Prompt&family=Rajdhani:wght@500&family=Raleway&family=Rubik:wght@300&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -22,7 +22,7 @@
 
     <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid">
-            <img class="ms-3" src="~/Web Images/Black_Minimalist_Watch_Service___Store_Logo-removebg-preview.png" height="auto" width="50px" />
+            <img src="~/Web Images/wclogo.png" class="logoimg"/>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -33,9 +33,6 @@
                     </li>
                     <li class="nav-item ms-3">
                         @Html.ActionLink("TOP BRANDS", "TopBrands", "Brand",new {}, new { @class = "nav-link active" })
-                    </li>
-                    <li class="nav-item">
-                        @*@Html.ActionLink("Home", "", "", new { @class = "nav-link active" })*@
                     </li>
                 </ul>
 
@@ -61,9 +58,17 @@
                     <div class="dropdown">
                         <button><i class="fa-solid fa-circle-user"></i></button>
                         <div class="dropdown-options">
-                            <a href="#">Dashboard</a>
-                            <a href="#">Setting</a>
-                            <a href="#">Logout</a>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                
+                                <a href=@Url.Action("Logout" , "CustomerMVC")>Logout</a>
+                            }
+                            else
+                            {
+                                <a href=@Url.Action("UserLogin" , "CustomerMVC")>User Login</a>
+                                <a href=@Url.Action("AdminLogin" , "Admin")>Admin Login</a>
+
+                            }
                         </div>
                     </div>
                 </div>
@@ -82,7 +87,7 @@
 
 
             <div class="logo">
-                <img src="~/Web Images/Black_Minimalist_Watch_Service___Store_Logo-removebg-preview.png" />
+                <img src="~/Web Images/wclogo.png" />
 
                 <h2 class="heading">Watch Collections</h2>
             </div>
@@ -117,6 +122,12 @@
 
 
 <style>
+
+    .logoimg{
+        width:50px;
+        height:auto;
+       
+    }
     footer i{
         font-size:1.5rem;
     }
@@ -142,6 +153,7 @@
 
 
     .logo{
+        margin-top:30px;
         display:flex;
         justify-content:center;
         gap:20px;
@@ -151,7 +163,7 @@
     .heading {
         font-family: 'Raleway', sans-serif;
         text-align: center;
-        margin: 10px 0;
+        margin:10px 0;
         text-transform: uppercase;
         font-weight:500;
     }
@@ -184,8 +196,9 @@
     }
 
     footer img{
-        width:60px;
-        height:auto;
+        margin-top:5px;
+        width:50px;
+        height:45px;
         
     }
 
@@ -268,6 +281,7 @@
         border-radius: 5px;
         box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
         z-index:9999;
+        width:120px;
     }
 
     .dropdown:hover .dropdown-options {
@@ -279,7 +293,7 @@
         color: #000000;
         padding: 5px;
         text-decoration: none;
-        padding:10px 20px;
+        padding:10px 10px;
     }
 
         .dropdown-options a:hover {

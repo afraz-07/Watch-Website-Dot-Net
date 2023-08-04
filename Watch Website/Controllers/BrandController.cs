@@ -12,17 +12,16 @@ namespace Watch_Website.Controllers
     {
         WatchEntities DB = new WatchEntities();
 
-        public ActionResult Index()
-        {
-            return View();
-        }
 
+        [Authorize(Roles = "Admin")]
 
         public ActionResult CreateBrand()
         {
             return View();
         }
 
+
+        [Authorize(Roles = "Admin")]
 
         [HttpPost]
         public ActionResult CreateBrand(Brand brand)

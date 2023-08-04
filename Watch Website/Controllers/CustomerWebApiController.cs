@@ -23,14 +23,14 @@ namespace Watch_Website.Controllers
         }
 
 
-        [HttpPut]
-        public IHttpActionResult Edit(Customer c) 
-        {
-            DB.Entry(c).State = System.Data.Entity.EntityState.Modified;
-            DB.SaveChanges();
+        //[HttpPut]
+        //public IHttpActionResult Edit(Customer c) 
+        //{
+        //    DB.Entry(c).State = System.Data.Entity.EntityState.Modified;
+        //    DB.SaveChanges();
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
         
 
     }
