@@ -27,10 +27,13 @@ namespace Watch_Website.Controllers
             if (AdminUser != null)
             {
                 FormsAuthentication.SetAuthCookie(a.UserId, false);
-                return RedirectToAction("ProductList", "Product");
+                return RedirectToAction("AdminHome");
             }
             return View();
         }
+
+
+        [Authorize(Roles = "Admin")]
 
         public ActionResult Edit(int id) 
         {
@@ -45,5 +48,14 @@ namespace Watch_Website.Controllers
             DB.SaveChanges();
             return RedirectToAction("ProductList", "Product");
         }
+
+
+        [Authorize(Roles = "Admin")]
+
+        public ActionResult AdminHome()
+        {
+            return View();
+        }
+
     }
 }

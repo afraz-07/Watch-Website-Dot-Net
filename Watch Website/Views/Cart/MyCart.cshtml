@@ -9,48 +9,53 @@
 
 
 
-@foreach (var item in Model)
-{
+    @foreach (var item in Model)
+    {
 
-    <div class="section">
-        <a href=@Url.Action("ViewDetails", "Home", new { id = item.Id })>
-            <div class="cards">
-                <img src=@Url.Content(item.Image) />
+        <div class="section">
+            <a href=@Url.Action("ViewDetails", "Home", new { id = item.Id })>
+                <div class="cards">
+                    <img src=@Url.Content(item.Image) />
 
-                <div class="content">
-                    <h5 class="name">@Html.DisplayFor(modelitem => item.Name)</h5>
+                    <div class="content">
+                        <h5 class="name">@Html.DisplayFor(modelitem => item.Name)</h5>
 
-                    <h6 class="model">@Html.DisplayFor(modelitem => item.Model)</h6>
+                        <h6 class="model">@Html.DisplayFor(modelitem => item.Model)</h6>
 
-                    <h6 class="brand">@Html.DisplayFor(modelitem => item.Brand)</h6>
+                        <h6 class="brand">@Html.DisplayFor(modelitem => item.Brand)</h6>
 
-                    @{
-                        decimal p = item.Price;
-                        string fo = p.ToString("N");
-                    }
-
-
-                    <h5 class="price"><span>₹</span> @fo</h5>
-
-                    <h6 class="price"><span>Qty:</span> &nbsp; @Html.DisplayFor(modelitem => item.Quantity) </h6>
+                        @{
+                            decimal p = item.Price;
+                            string fo = p.ToString("N");
+                        }
 
 
+                        <h5 class="price"><span>₹</span> @fo</h5>
+
+                        <h6 class="price"><span>Qty:</span> &nbsp; @Html.DisplayFor(modelitem => item.Quantity) </h6>
+
+
+                    </div>
                 </div>
-            </div>
-        </a>
-        <a class="del" href=@Url.Action("RemoveFromCart", new { id = item.Id })>
-            <i class="fa-solid fa-trash"></i>
-        </a>
+            </a>
+            <a class="del" href=@Url.Action("RemoveFromCart", new { id = item.Id })>
+                <i class="fa-solid fa-trash"></i>
+            </a>
+        </div>
+
+
+    }
+
+
+    <div class="d">
+        <h3 class="price">Total Price: @ViewBag.TotalPrice</h3>
+
+        <div class="buy"><a href=@Url.Action("BuyNow" , "Cart" , new {})> Buy Now &nbsp;  <i class="fa-solid fa-bag-shopping"></i> </a></div>
     </div>
 
 
 
-}
 
-<div class="d">
-    <h3 class="price">Total Price: @ViewBag.TotalPrice</h3>
-    <div class="buy"><a href=@Url.Action("BuyNow" , "Cart" , new {})> Buy Now &nbsp;  <i class="fa-solid fa-bag-shopping"></i> </a></div>
-</div>
 
 
 <style>

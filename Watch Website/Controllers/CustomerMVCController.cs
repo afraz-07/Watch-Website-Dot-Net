@@ -81,7 +81,7 @@ namespace Watch_Website.Controllers
 
                 if (user != null)
                 {
-                    FormsAuthentication.SetAuthCookie(c.MobileNo, false);
+                    FormsAuthentication.SetAuthCookie(c.MobileNo, true);
                     return RedirectToAction("Index", "Home");
                 }
 
@@ -100,6 +100,12 @@ namespace Watch_Website.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index" , "Home");
+        }
+
+        public ActionResult UserList()
+        {
+            var list = DB.Customers.ToList();
+            return View(list);
         }
     }
 }

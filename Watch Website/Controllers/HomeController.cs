@@ -12,7 +12,7 @@ namespace Watch_Website.Controllers
     {
         WatchEntities DB = new WatchEntities();
 
-        public ActionResult Index( string searchtext)
+        public ActionResult Index(string searchtext)
         {
             var imageList = DB.Products.ToList();
 
@@ -41,6 +41,8 @@ namespace Watch_Website.Controllers
             return View(imageModel);
 
         }
+
+        
 
     }
 }

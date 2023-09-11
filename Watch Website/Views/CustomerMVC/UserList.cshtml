@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Watch_Website.Models.Customer>
+
+@{
+    ViewBag.Title = "UserList";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2 class="heading">User List</h2>
+
+<div class="container">
+
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobileNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MobileNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<style>
+    .container{
+        text-align:center;
+        width:100%;
+    }
+
+    tr{
+        text-align:start;
+        width:100%;
+    }
+</style>

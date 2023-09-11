@@ -180,6 +180,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\cartbuy.cs" />
     <Compile Include="Models\Customer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -285,18 +286,25 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Script.js" />
+    <Content Include="Web Images\card2.jpg" />
     <Content Include="Web Images\F.P.Journe.png" />
     <Content Include="Web Images\Hublot.png" />
     <Content Include="Web Images\Jaeger.png" />
     <Content Include="Web Images\AdminLogin-bg.jpg" />
+    <Content Include="Web Images\card1.jpg" />
     <Content Include="Web Images\Omega.png" />
     <Content Include="Web Images\Patek Philippe.png" />
+    <Content Include="Web Images\card4.jpg" />
     <Content Include="Web Images\Rolex.png" />
+    <Content Include="Web Images\card3.png" />
+    <Content Include="Web Images\card6.png" />
+    <Content Include="Web Images\card5.png" />
     <Content Include="Web Images\Seiko.png" />
     <Content Include="Web Images\success.gif" />
     <Content Include="Web Images\Tag Heuer.png" />
     <Content Include="Web Images\UserLogin-bg.jpg" />
     <Content Include="Web Images\wclogo.png" />
+    <Content Include="Web Images\wclogoadmin.png" />
     <Content Include="Web Images\Zenith.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -328,7 +336,9 @@
     <Content Include="Views\CustomerMVC\UserLogin.cshtml" />
     <Content Include="Views\CustomerMVC\BuyNow.cshtml" />
     <Content Include="Views\CustomerMVC\PlaceOrder.cshtml" />
-    <Content Include="Views\Cart\BuyNow.cshtml" />
+    <Content Include="Views\Admin\AdminHome.cshtml" />
+    <Content Include="Views\CustomerMVC\UserList.cshtml" />
+    <Content Include="Views\Brand\BrandList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />

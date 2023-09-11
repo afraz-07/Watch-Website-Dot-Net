@@ -4,53 +4,118 @@
     ViewBag.Title = "Get";
     Layout = "~/Views/Shared/_Admin.cshtml";
 }
+<h2 class="heading">Details</h2>
 
-<h2>Get</h2>
 
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+<div class="view">
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+    <img src="@Url.Content(Model.Image)" height="auto" width="400px" />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Model)
-        </dt>
+    <div class="content">
+        <h1 class="name">@Html.DisplayFor(model => model.Name)</h1>
 
-        <dd>
-            @Html.DisplayFor(model => model.Model)
-        </dd>
+        <h5 class="model">@Html.DisplayFor(model => model.Model)</h5>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Brand)
-        </dt>
+        <h5 class="brand">@Html.DisplayFor(model => model.Brand)</h5>
 
-        <dd>
-            @Html.DisplayFor(model => model.Brand)
-        </dd>
+        <h3 class="price"><span>₹</span>@Html.DisplayFor(model => model.Price)</h3>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+        <div class="carts"><a href=@Url.Action("EditProduct" , "Product" ,  new {id = Model.Id }  )> Edit &nbsp; <i class="fa-solid fa-pen"></i> </a></div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+        <div class="buy"><a href=@Url.Action("DeleteProduct" , "Product" , new {id = Model.Id })> Delete &nbsp; <i class="fa-solid fa-trash"></i></a></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
+    </div>
 
-        <dd>
-            <img src="@Url.Content(Model.Image)" alt="" />
-        </dd>
-
-    </dl>
 </div>
 
+<style>
+    .view {
+        margin: 50px 0 120px 0;
+    }
+
+    .qty input {
+        width: 110px;
+        text-align: center;
+    }
+
+    .qty {
+        margin-bottom: 30px;
+        font-family: font-family: 'Rubik', sans-serif;
+        font-weight: 600;
+    }
+
+    .view img {
+        cursor: zoom-in;
+        transition: opacity .5s;
+        display: block;
+    }
+
+    .carts a {
+        color: white;
+        text-decoration: none;
+        background-color: black;
+        padding: 10px 77px;
+        text-transform: uppercase;
+        font-family: 'Questrial', sans-serif;
+        font-weight: lighter;
+        border: 1px solid black;
+    }
+
+    .buy a {
+        text-decoration: none;
+        color: black;
+        border: 1px solid black;
+        background-color: white;
+        padding: 10px 66px;
+        text-transform: uppercase;
+        font-family: 'Questrial', sans-serif;
+        font-weight: 700;
+    }
+
+        .buy a:hover {
+            background-color: black;
+            color: white;
+            font-weight: lighter;
+        }
+
+    .carts a:hover {
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+        font-weight: 700;
+    }
+
+    .buy {
+        margin-top: 30px;
+    }
+
+    .view {
+        display: flex;
+        margin-left: 10%;
+    }
+
+    .content {
+        margin: 25px 0 0 10%;
+    }
+
+    .name {
+        font-family: 'Prata', serif;
+    }
+
+    .model {
+        font-family: 'Prompt', sans-serif;
+    }
+
+    .brand {
+        font-family: 'Play', sans-serif;
+        text-transform: uppercase;
+    }
+
+    .price {
+        font-family: 'Kanit', sans-serif;
+    }
+
+    .name, .model, .brand, .price {
+        margin: 20px 0;
+    }
+</style>

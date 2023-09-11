@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Watch_Website.Models.Brand>
+
+@{
+    ViewBag.Title = "BrandList";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2 class="heading">BrandList</h2>
+
+<table class="table table-bordered table-striped-columns">
+    <tr>
+        <th>
+            Image
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr class="container">
+        <td class="topbrands">
+            <img src="@Url.Content(item.Image)" />
+        </td>
+        <td class="name">
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+
+
+    </tr>
+}
+
+</table>
+<style>
+    .topbrands img {
+        width: 150px;
+        height: auto;
+        margin: 30px;
+        object-fit:cover;
+    }
+
+    .topbrands{
+        height:100px;
+        width:200px;        
+    }
+
+    .container {
+        font-family: 'Raleway', sans-serif;
+        font-size: 1.2rem;
+        font-weight:600;
+        text-transform:uppercase;
+        width: 500px;
+    }
+
+    .table{
+        text-align:center;
+        width:100%;
+        display:flex;
+        justify-content:center;
+    }
+
+    .name{
+        vertical-align:middle;
+        height:100px;
+    }
+    
+</style>

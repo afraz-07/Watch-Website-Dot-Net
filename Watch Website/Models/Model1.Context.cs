@@ -29,5 +29,7 @@ namespace Watch_Website.Models
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+
+        public System.Data.Entity.DbSet<Watch_Website.Models.Cart> Carts { get; set; }
     }
 }

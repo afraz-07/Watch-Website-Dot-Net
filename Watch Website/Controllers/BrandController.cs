@@ -54,6 +54,14 @@ namespace Watch_Website.Controllers
             return View(imageList);
         }
 
+
+        public ActionResult BrandList()
+        {
+            var imageList = DB.Brands.ToList();
+
+            return View(imageList);
+        }
+
         public ActionResult DisplayBrand(string b ) 
         {
             var brands = DB.Products.Where(x => x.Brand == b).ToList();

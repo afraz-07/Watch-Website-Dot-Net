@@ -5,57 +5,119 @@
     Layout = "~/Views/Shared/_Admin.cshtml";
 }
 
-<h2>Product List</h2>
 @*<input class="form-control me-2" name="searchtxt" type="search" placeholder="Search" aria-label="Search">
-<button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i> Search</button>*@
+    <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i> Search</button>*@
 
-<p>
-    @Html.ActionLink("Create New", "CreateProduct")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Model)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Brand)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image)
-        </th>
-        <th></th>
-    </tr>
+<h2 class="heading">Product List</h2>
+
+
+<table class="table ">
+    @*<tr>
+            <th>
+                Images
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+
+            <th></th>
+        </tr>*@
 
     @foreach (var item in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                <img src="@Url.Content(item.Image)" width="100px" height="auto" />
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "EditProduct", new { id = item.Id }) |
-                @Html.ActionLink("Details", "ProductDetails", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "DeleteProduct", new { id = item.Id })
-            </td>
+                <div class="flexs">
+                    <img src="@Url.Content(item.Image)" width="100px" height="auto" />
+
+                    <div class="left">
+                        <div class="name">
+                            <span>Name:</span> @Html.DisplayFor(modelItem => item.Name)
+                        </div>
+                        <div class="name">
+                            <span>Brand:</span> @Html.DisplayFor(modelItem => item.Brand)
+                        </div>
+                        <div class="model">
+                            <span>Model:</span>  @Html.DisplayFor(modelItem => item.Model)
+                        </div>
+                        <div class="model">
+                            <span>Price: &nbsp; ₹ </span> @Html.DisplayFor(modelItem => item.Price)
+                        </div>
+                    </div>
+
+                    <div class="butto">
+                        @Html.ActionLink("Details", "ProductDetails", new { id = item.Id }, new { @class = "" })
+                    </div>
+
+                </div>
+
+
+
+
+                @*@Html.ActionLink("Edit", "EditProduct", new { id = item.Id }) |*@
+                @*@Html.ActionLink("Delete", "DeleteProduct", new { id = item.Id })*@
+
         </tr>
     }
 
 </table>
+
+<style>
+    span {
+        font-weight: 600;
+    }
+
+    .flexs {
+        display: flex;
+        justify-content: flex-start;
+        gap: 10%;
+    }
+
+    .butto {
+        margin-top: 30px;
+    }
+
+        .butto a {
+            text-decoration: none;
+            color: white;
+            border: 1px solid black;
+            background-color: black;
+            padding: 10px 30px;
+            text-transform: uppercase;
+            font-family: 'Questrial', sans-serif;
+        }
+
+    .butto a:hover{
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+        font-weight: 700;
+    }
+
+    .left {
+        width: 350px;
+    }
+
+
+    .name, .model {
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+
+    .table{
+        display:flex;
+        justify-content:center;
+       
+    }
+</style>

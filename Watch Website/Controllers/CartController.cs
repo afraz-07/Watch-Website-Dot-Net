@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using Watch_Website.Models;
@@ -14,6 +15,9 @@ namespace Watch_Website.Controllers
     
     public class CartController : Controller
     {
+
+        WatchEntities DB = new WatchEntities();
+
         private List<Cart> GetCart()
         {
             var cart = Session["Cart"] as List<Cart>;
@@ -81,6 +85,8 @@ namespace Watch_Website.Controllers
 
                 };
                 cart.Add(newItem);
+
+                
             }
             
 
@@ -100,7 +106,35 @@ namespace Watch_Website.Controllers
             return RedirectToAction("MyCart");
         }
 
-        
+        public ActionResult BuyNow()
+        {
+            var model1 = new Customer(); 
+            var model2 = new Product(); 
+
+            var viewModel = new cartbuy
+            {
+                customer = model1,
+                product = model2
+            };
+
+            //return View(viewModel);
+
+            var cart = GetCart();
+
+            decimal totalPrice = CalculateTotalPrice(cart);
+
+
+            string format = totalPrice.ToString("N");
+
+            ViewBag.TotalPrice = format;
+
+
+
+
+            return View(cart);
+        }
+
+
     }
 
 }

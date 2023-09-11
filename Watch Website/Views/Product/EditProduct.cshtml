@@ -5,66 +5,73 @@
     Layout = "~/Views/Shared/_Admin.cshtml";
 }
 
-<h2>Edit</h2>
+<h2 class="heading">Edit Product</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
+
+
+<div class="fle">
     <div class="form-horizontal">
-        <h4>Product</h4>
-        <hr />
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group d-flex m-4">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2 mt-1" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Model, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group d-flex m-4">
+            @Html.LabelFor(model => model.Model, htmlAttributes: new { @class = "control-label col-md-2 mt-1" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Model, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Model, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Brand, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group d-flex m-4">
+            @Html.LabelFor(model => model.Brand, htmlAttributes: new { @class = "control-label col-md-2 mt-1" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Brand, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Brand, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group d-flex m-4">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2 mt-1" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <img src="@Url.Content(Model.Image)" alt="" />
+        <div class="form-group d-flex m-4">
+            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-4 mt-1" })
+            <div class="col-md-8">
                 @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group butto m-5">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="col-md-8"  />
             </div>
         </div>
     </div>
+
+
+    <div class="img mt-3 ">
+        <img src="@Url.Content(Model.Image)" alt="" />
+    </div>
+</div>
 }
 
 
@@ -72,3 +79,41 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<style>
+
+    .butto input{
+        text-decoration: none;
+        color: white;
+        border: 1px solid black;
+        background-color: black;
+        padding: 7px 30px;
+        text-transform: uppercase;
+        font-family: 'Questrial', sans-serif;
+    }
+
+        .butto input:hover {
+            background-color: white;
+            color: black;
+            border: 1px solid black;
+            font-weight: 700;
+        }
+    .butto {
+        text-align: center;
+        width: 100%;
+        transform:translateX(130px);
+    }
+    .img img{
+        height:auto;
+        width:300px;
+    }
+
+    .fle {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: 30px 0;
+    }
+
+    
+</style>

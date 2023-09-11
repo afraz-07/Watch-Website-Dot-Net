@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewBag.Title = "AdminHome";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+
+<section>
+    <div class="section">
+        <a href=@Url.Action("ProductList" ,"Product" , new { })>
+            <div class="card" id="card1">
+                <h1>Product List</h1>
+            </div>
+        </a>
+
+        <a href=@Url.Action("BrandList" , "Brand",  new { })>
+            <div class="card" id="card2">
+                <h1>Brand List</h1>
+            </div>
+        </a>
+
+        <a href=@Url.Action("UserList" ,"CustomerMVC",  new { })>
+            <div class="card" id="card3">
+                <h1>User List</h1>
+            </div>
+        </a>
+    </div>
+    <div class="section">
+        <a href=@Url.Action("ViewDetails" ,  new { })>
+            <div class="card" id="card4">
+                <h1>Order List</h1>
+            </div>
+        </a>
+
+        <a href=@Url.Action("ViewDetails" ,  new { })>
+            <div class="card" id="card5">
+                <h1>Shipping List</h1>
+            </div>
+        </a>
+
+        <a href=@Url.Action("ViewDetails" ,  new { })>
+            <div class="card" id="card6">
+                <h1>Customer Queries</h1>
+            </div>
+        </a>
+
+
+
+    </div>
+</section>
+
+<style>
+    .section {
+        display: flex;
+        justify-content: center;
+        gap: 5%;
+        margin:50px  0;
+    }
+
+    .card h1 {
+        color: white;
+        font-family: 'Gruppo', sans-serif;
+        font-size: 1.7rem;
+        position:absolute;
+        bottom:0px;
+        left:10px;
+        font-weight:500;
+    }
+
+    .card{
+        width: 350px;
+        height: 220px;
+        overflow:hidden;
+        transition:500ms;
+    }
+
+
+    .section a {
+        text-decoration: none;
+    }
+
+    #card1 {
+        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.9)), url('../../web images/card1.jpg');
+        background-size: cover;
+        filter: grayscale(100%);
+        overflow:hidden
+    }
+
+    #card2 {
+        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.9)), url('../../web images/card2.jpg');
+        background-size: cover;
+        filter: grayscale(100%);
+    }
+
+    #card3 {
+        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.9)), url('../../web images/card3.png');
+        background-size: cover;
+        filter: grayscale(100%);
+    }
+
+    #card4 {
+        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.9)), url('../../web images/card4.jpg');
+        background-size: cover;
+        filter: grayscale(100%);
+    }
+
+    #card5 {
+        background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('../../web images/card5.png');
+        background-size: cover;
+        filter: grayscale(100%);
+    }
+
+    #card6 {
+        background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('../../web images/card6.png');
+        background-size: cover;
+        filter: grayscale(100%);
+    }
+
+    .card:hover {
+        transform:scale(105%);
+    }
+</style>
